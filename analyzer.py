@@ -12,15 +12,14 @@ def load_models():
     nlp = spacy.load("en_core_web_sm")
 
     #load summarizer
-    sum_id = "/home/isaac/Desktop/nlp_project/models/distilbart-cnn-6-6"
-    sum_tok = AutoTokenizer.from_pretrained(sum_id, local_files_only=True)
-    sum_model = AutoModelForSeq2SeqLM.from_pretrained(sum_id, local_files_only=True)
+    sum_id = "sshleifer/distilbart-cnn-6-6"
+    sum_tok = AutoTokenizer.from_pretrained(sum_id)
+    sum_model = AutoModelForSeq2SeqLM.from_pretrained(sum_id)
 
     #load sentiment score guy
-    sent_id = "/home/isaac/Desktop/nlp_project/models/distilbert-sst2"
-    sent_tok = AutoTokenizer.from_pretrained(sent_id, local_files_only=True, use_fast=False)
-    sent_model = AutoModelForSequenceClassification.from_pretrained(sent_id, local_files_only=True)
-
+    sent_id = "distilbert-base-uncased-finetuned-sst-2-english"
+    sent_tok = AutoTokenizer.from_pretrained(sent_id, use_fast=False)
+    sent_model = AutoModelForSequenceClassification.from_pretrained(sent_id)
     return nlp, sum_tok, sum_model, sent_tok, sent_model
 
 def get_reading_stats(doc):
